@@ -15,3 +15,10 @@ model Book {
   totalCopies     Int
   availableCopies Int
 }
+
+model Author {
+  authorId    String   @id @default(uuid())
+  name        String
+  bio         String
+  dateOfBirth DateTime
+}
