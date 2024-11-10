@@ -9,6 +9,13 @@ const createBookIntoDb = async (payload: Book) => {
   return result
 }
 
+const getAllBooksFromDb = async () => {
+  const result = await prisma.book.findMany()
+
+  return result
+}
+
 export const BookServices = {
   createBookIntoDb,
+  getAllBooksFromDb,
 }
