@@ -45,9 +45,27 @@ const updateBookIntoDb = async (bookId: string, payload: Partial<Book>) => {
   return result
 }
 
+const deleteBookFromDb = async (bookId: string) => {
+  await prisma.book.findUniqueOrThrow({
+    where: {
+      bookId,
+    },
+  })
+
+  await prisma.$transaction(async (transactionClient) => {
+    const deletedBook = await transactionClient.book.delete({
+      where: {
+        bookId,
+      },
+    })
+    return deletedBook
+  })
+}
+
 export const BookServices = {
   createBookIntoDb,
   getAllBooksFromDb,
   getSingleBookFromDb,
   updateBookIntoDb,
+  deleteBookFromDb,
 }
