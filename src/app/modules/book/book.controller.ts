@@ -20,7 +20,20 @@ const getAllBooks = catchAsync(async (req, res) => {
   sendResponse(res, {
     success: true,
     status: httpStatus.CREATED,
-    message: 'Book created successfully',
+    message: 'Books retrieved successfully',
+    data: result,
+  })
+})
+
+const getSingleBook = catchAsync(async (req, res) => {
+  const { bookId } = req.params
+
+  const result = await BookServices.getSingleBookFromDb(bookId)
+
+  sendResponse(res, {
+    success: true,
+    status: httpStatus.CREATED,
+    message: 'Book retrieved successfully',
     data: result,
   })
 })
@@ -28,4 +41,5 @@ const getAllBooks = catchAsync(async (req, res) => {
 export const BookControllers = {
   createBook,
   getAllBooks,
+  getSingleBook,
 }
