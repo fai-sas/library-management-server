@@ -1,14 +1,14 @@
 import { Router } from 'express'
-import { AuthorControllers } from '../modules/author/author.controller'
 import { BookRoutes } from '../modules/book/book.routes'
+import { MemberRoutes } from '../modules/member/member.routes'
 
 const router = Router()
 
 const moduleRoutes = [
-  // {
-  //   path: '/author',
-  //   routes: AuthorControllers,
-  // },
+  {
+    path: '/members',
+    routes: MemberRoutes,
+  },
   {
     path: '/books',
     routes: BookRoutes,
