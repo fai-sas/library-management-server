@@ -9,6 +9,24 @@ const createMemberIntoDb = async (payload: Member) => {
   return result
 }
 
+const getAllMembersFromDb = async () => {
+  const result = await prisma.member.findMany()
+
+  return result
+}
+
+const getSingleMemberFromDb = async (memberId: string) => {
+  const result = await prisma.member.findUniqueOrThrow({
+    where: {
+      memberId,
+    },
+  })
+
+  return result
+}
+
 export const MemberServices = {
   createMemberIntoDb,
+  getAllMembersFromDb,
+  getSingleMemberFromDb,
 }

@@ -13,6 +13,33 @@ const createMember = catchAsync(async (req, res) => {
     data: result,
   })
 })
+
+const getAllMembers = catchAsync(async (req, res) => {
+  const result = await MemberServices.getAllMembersFromDb()
+
+  sendResponse(res, {
+    success: true,
+    status: httpStatus.OK,
+    message: 'Members retrieved successfully',
+    data: result,
+  })
+})
+
+const getSingleMember = catchAsync(async (req, res) => {
+  const { memberId } = req.params
+
+  const result = await MemberServices.getSingleMemberFromDb(memberId)
+
+  sendResponse(res, {
+    success: true,
+    status: httpStatus.OK,
+    message: 'Member retrieved successfully',
+    data: result,
+  })
+})
+
 export const MemberControllers = {
   createMember,
+  getAllMembers,
+  getSingleMember,
 }
