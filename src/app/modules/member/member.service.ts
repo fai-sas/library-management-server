@@ -48,9 +48,27 @@ const updateMemberIntoDb = async (
   return result
 }
 
+const deleteMemberFromDb = async (memberId: string) => {
+  await prisma.member.findUniqueOrThrow({
+    where: {
+      memberId,
+    },
+  })
+
+  await prisma.$transaction(async (transactionClient) => {
+    const deletedMember = await transactionClient.member.delete({
+      where: {
+        memberId,
+      },
+    })
+    return deletedMember
+  })
+}
+
 export const MemberServices = {
   createMemberIntoDb,
   getAllMembersFromDb,
   getSingleMemberFromDb,
   updateMemberIntoDb,
+  deleteMemberFromDb,
 }
