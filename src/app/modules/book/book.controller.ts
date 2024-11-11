@@ -88,6 +88,17 @@ const returnBook = catchAsync(async (req, res) => {
   })
 })
 
+const getOverdueBorrowList = catchAsync(async (req, res) => {
+  const result = await BookServices.getOverdueBorrowListFromDb()
+
+  sendResponse(res, {
+    success: true,
+    status: httpStatus.OK,
+    message: 'Overdue borrow list fetched',
+    data: result,
+  })
+})
+
 export const BookControllers = {
   createBook,
   getAllBooks,
@@ -96,4 +107,5 @@ export const BookControllers = {
   deleteBook,
   borrowBook,
   returnBook,
+  getOverdueBorrowList,
 }
