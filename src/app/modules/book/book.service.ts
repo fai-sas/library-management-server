@@ -1,4 +1,4 @@
-import { Book } from '@prisma/client'
+import { Book, BorrowRecord } from '@prisma/client'
 import prisma from '../../utils/prisma'
 
 const createBookIntoDb = async (payload: Book) => {
@@ -62,10 +62,40 @@ const deleteBookFromDb = async (bookId: string) => {
   })
 }
 
+const borrowBookIntoDb = async (payload: BorrowRecord) => {
+  await prisma.book.findUniqueOrThrow({
+    where: {
+      bookId: payload.bookId,
+    },
+  })
+
+  await prisma.member.findUniqueOrThrow({
+    where: {
+      memberId: payload.memberId,
+    },
+  })
+
+  const result = await prisma.borrowRecord.create({
+    data: payload,
+  })
+
+  return result
+}
+
+const returnBookIntoDb = async (borrowId: string) => {
+  await prisma.borrowRecord.findUniqueOrThrow({
+    where: {
+      borrowId,
+    },
+  })
+}
+
 export const BookServices = {
   createBookIntoDb,
   getAllBooksFromDb,
   getSingleBookFromDb,
   updateBookIntoDb,
   deleteBookFromDb,
+  borrowBookIntoDb,
+  returnBookIntoDb,
 }
