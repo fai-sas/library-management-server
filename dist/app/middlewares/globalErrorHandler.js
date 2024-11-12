@@ -7,6 +7,7 @@ const http_status_1 = __importDefault(require("http-status"));
 const globalErrorHandler = (err, req, res, next) => {
     res.status(http_status_1.default.INTERNAL_SERVER_ERROR).json({
         success: false,
+        status: err.status || 500,
         message: err.message || 'Something went wrong!',
         error: err,
     });

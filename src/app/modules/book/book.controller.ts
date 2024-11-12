@@ -64,30 +64,6 @@ const deleteBook = catchAsync(async (req, res) => {
   })
 })
 
-const borrowBook = catchAsync(async (req, res) => {
-  const result = await BookServices.borrowBookIntoDb(req.body)
-
-  sendResponse(res, {
-    success: true,
-    status: httpStatus.OK,
-    message: 'Book borrowed successfully',
-    data: result,
-  })
-})
-
-const returnBook = catchAsync(async (req, res) => {
-  const { borrowId } = req.body
-
-  const result = await BookServices.returnBookIntoDb(borrowId)
-
-  sendResponse(res, {
-    success: true,
-    status: httpStatus.OK,
-    message: 'Book returned successfully',
-    data: result,
-  })
-})
-
 const getOverdueBorrowList = catchAsync(async (req, res) => {
   const result = await BookServices.getOverdueBorrowListFromDb()
 
@@ -105,7 +81,5 @@ export const BookControllers = {
   getSingleBook,
   updateBook,
   deleteBook,
-  borrowBook,
-  returnBook,
   getOverdueBorrowList,
 }

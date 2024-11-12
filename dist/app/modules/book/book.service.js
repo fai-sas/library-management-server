@@ -64,29 +64,6 @@ const deleteBookFromDb = (bookId) => __awaiter(void 0, void 0, void 0, function*
         return deletedBook;
     }));
 });
-const borrowBookIntoDb = (payload) => __awaiter(void 0, void 0, void 0, function* () {
-    yield prisma_1.default.book.findUniqueOrThrow({
-        where: {
-            bookId: payload.bookId,
-        },
-    });
-    yield prisma_1.default.member.findUniqueOrThrow({
-        where: {
-            memberId: payload.memberId,
-        },
-    });
-    const result = yield prisma_1.default.borrowRecord.create({
-        data: payload,
-    });
-    return result;
-});
-const returnBookIntoDb = (borrowId) => __awaiter(void 0, void 0, void 0, function* () {
-    yield prisma_1.default.borrowRecord.findUniqueOrThrow({
-        where: {
-            borrowId,
-        },
-    });
-});
 const getOverdueBorrowListFromDb = () => __awaiter(void 0, void 0, void 0, function* () {
     const currentDate = new Date();
     const overdueBooks = yield prisma_1.default.borrowRecord.findMany({
@@ -127,7 +104,5 @@ exports.BookServices = {
     getSingleBookFromDb,
     updateBookIntoDb,
     deleteBookFromDb,
-    borrowBookIntoDb,
-    returnBookIntoDb,
     getOverdueBorrowListFromDb,
 };

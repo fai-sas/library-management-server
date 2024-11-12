@@ -13,10 +13,6 @@ router.put('/:bookId', BookControllers.updateBook)
 
 router.delete('/:bookId', BookControllers.deleteBook)
 
-router.post('/borrow', BookControllers.borrowBook)
-
 router.get('/borrow/overdue', BookControllers.getOverdueBorrowList)
-
-router.post('/return', BookControllers.returnBook)
 
 export const BookRoutes = router

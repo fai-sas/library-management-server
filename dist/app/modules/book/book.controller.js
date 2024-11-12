@@ -65,25 +65,6 @@ const deleteBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result,
     });
 }));
-const borrowBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield book_service_1.BookServices.borrowBookIntoDb(req.body);
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        status: http_status_1.default.OK,
-        message: 'Book borrowed successfully',
-        data: result,
-    });
-}));
-const returnBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { borrowId } = req.body;
-    const result = yield book_service_1.BookServices.returnBookIntoDb(borrowId);
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        status: http_status_1.default.OK,
-        message: 'Book returned successfully',
-        data: result,
-    });
-}));
 const getOverdueBorrowList = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield book_service_1.BookServices.getOverdueBorrowListFromDb();
     (0, sendResponse_1.default)(res, {
@@ -99,7 +80,5 @@ exports.BookControllers = {
     getSingleBook,
     updateBook,
     deleteBook,
-    borrowBook,
-    returnBook,
     getOverdueBorrowList,
 };

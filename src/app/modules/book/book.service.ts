@@ -62,34 +62,6 @@ const deleteBookFromDb = async (bookId: string) => {
   })
 }
 
-const borrowBookIntoDb = async (payload: BorrowRecord) => {
-  await prisma.book.findUniqueOrThrow({
-    where: {
-      bookId: payload.bookId,
-    },
-  })
-
-  await prisma.member.findUniqueOrThrow({
-    where: {
-      memberId: payload.memberId,
-    },
-  })
-
-  const result = await prisma.borrowRecord.create({
-    data: payload,
-  })
-
-  return result
-}
-
-const returnBookIntoDb = async (borrowId: string) => {
-  await prisma.borrowRecord.findUniqueOrThrow({
-    where: {
-      borrowId,
-    },
-  })
-}
-
 const getOverdueBorrowListFromDb = async () => {
   const currentDate = new Date()
 
@@ -137,7 +109,5 @@ export const BookServices = {
   getSingleBookFromDb,
   updateBookIntoDb,
   deleteBookFromDb,
-  borrowBookIntoDb,
-  returnBookIntoDb,
   getOverdueBorrowListFromDb,
 }
