@@ -9,6 +9,7 @@ const routes_1 = __importDefault(require("./app/routes"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const moment_1 = __importDefault(require("moment"));
 const globalErrorHandler_1 = __importDefault(require("./app/middlewares/globalErrorHandler"));
+const notFound_1 = __importDefault(require("./app/middlewares/notFound"));
 const app = (0, express_1.default)();
 //parsers
 app.use(express_1.default.json());
@@ -48,4 +49,5 @@ app.get('/', (req, res) => {
   `);
 });
 app.use(globalErrorHandler_1.default);
+app.use(notFound_1.default);
 exports.default = app;

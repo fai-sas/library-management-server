@@ -13,6 +13,4 @@ router.put('/:bookId', BookControllers.updateBook)
 
 router.delete('/:bookId', BookControllers.deleteBook)
 
-router.get('/borrow/overdue', BookControllers.getOverdueBorrowList)
-
 export const BookRoutes = router

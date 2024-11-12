@@ -5,4 +5,6 @@ const router = express.Router()
 
 router.post('/', BorrowControllers.borrowBook)
 
+router.get('/overdue', BorrowControllers.getOverdueBorrowList)
+
 export const BorrowRoutes = router

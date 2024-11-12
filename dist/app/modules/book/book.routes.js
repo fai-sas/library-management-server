@@ -12,5 +12,4 @@ router.get('/', book_controller_1.BookControllers.getAllBooks);
 router.get('/:bookId', book_controller_1.BookControllers.getSingleBook);
 router.put('/:bookId', book_controller_1.BookControllers.updateBook);
 router.delete('/:bookId', book_controller_1.BookControllers.deleteBook);
-router.get('/borrow/overdue', book_controller_1.BookControllers.getOverdueBorrowList);
 exports.BookRoutes = router;

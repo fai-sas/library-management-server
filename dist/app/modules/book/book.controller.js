@@ -65,20 +65,10 @@ const deleteBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, voi
         data: result,
     });
 }));
-const getOverdueBorrowList = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield book_service_1.BookServices.getOverdueBorrowListFromDb();
-    (0, sendResponse_1.default)(res, {
-        success: true,
-        status: http_status_1.default.OK,
-        message: 'Overdue borrow list fetched',
-        data: result,
-    });
-}));
 exports.BookControllers = {
     createBook,
     getAllBooks,
     getSingleBook,
     updateBook,
     deleteBook,
-    getOverdueBorrowList,
 };
