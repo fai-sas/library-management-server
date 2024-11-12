@@ -1,4 +1,4 @@
-import { Book, BorrowRecord } from '@prisma/client'
+import { Book } from '@prisma/client'
 import prisma from '../../utils/prisma'
 
 const createBookIntoDb = async (payload: Book) => {

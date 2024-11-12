@@ -16,12 +16,13 @@ exports.ReturnControllers = void 0;
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const return_service_1 = require("./return.service");
+const http_status_1 = __importDefault(require("http-status"));
 const returnBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { borrowId } = req.body;
     const result = yield return_service_1.ReturnServices.returnBookIntoDb(borrowId);
     (0, sendResponse_1.default)(res, {
         success: true,
-        status: httpStatus.OK,
+        status: http_status_1.default.OK,
         message: 'Book returned successfully',
         data: result,
     });

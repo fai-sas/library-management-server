@@ -16,11 +16,12 @@ exports.BorrowControllers = void 0;
 const catchAsync_1 = __importDefault(require("../../utils/catchAsync"));
 const sendResponse_1 = __importDefault(require("../../utils/sendResponse"));
 const borrow_service_1 = require("./borrow.service");
+const http_status_1 = __importDefault(require("http-status"));
 const borrowBook = (0, catchAsync_1.default)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield borrow_service_1.BorrowServices.borrowBookIntoDb(req.body);
     (0, sendResponse_1.default)(res, {
         success: true,
-        status: httpStatus.OK,
+        status: http_status_1.default.OK,
         message: 'Book borrowed successfully',
         data: result,
     });
